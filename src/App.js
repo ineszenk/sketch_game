@@ -1,25 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React from "react";
+
 import { BrowserRouter as Router } from "react-router-dom";
+import { Canvas, Controls, Game } from "./game";
+import Home from "./Home";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div class="nes-container is-dark with-title">
+        <h1 class="title">Sketch - Round 10 of 10</h1>
+        <Game />
       </div>
     </Router>
   );
