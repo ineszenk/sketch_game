@@ -125,7 +125,6 @@ function Game() {
       <div class="nes-container is-dark with-title">
         <h1 class="title">Sketch - Round {currentRound + 1} of 10</h1>
         <div className="game">
-          <p>Points : {points}</p>
           <GameContext.Provider
             value={{
               points,
@@ -139,7 +138,10 @@ function Game() {
           >
             <Canvas ref={ref} />
             <Controls theCanvas={ref} model={model} labels={labels} />
-            {rounds[currentRound]}
+            <p>
+              Points : {points} / {currentRound + 1}
+            </p>
+            <p> {rounds[currentRound]}</p>
           </GameContext.Provider>
         </div>
       </div>
