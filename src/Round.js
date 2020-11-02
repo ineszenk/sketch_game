@@ -8,20 +8,20 @@ function useRounds(labels) {
 
   const rounds = Array.apply(null, {
     length: labels.length
-  }).map((round, index) => <Round />);
+  }).map((round, index) => <Round labelToDraw={labels[index]} />);
 
   return [
     rounds,
     currentRound,
-    () => setCurrentRound((currentRound + 1) % labels.length),
+    () => setCurrentRound((currentRound + 1) % 10),
     () => setCurrentRound(0)
   ];
 }
 
-function Round() {
+function Round({ labelToDraw }) {
   return (
     <div>
-      <RoundContext.Provider>
+      <RoundContext.Provider value={{ labelToDraw }}>
         <Timer />
       </RoundContext.Provider>
     </div>

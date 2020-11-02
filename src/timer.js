@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { RoundContext } from "./Round";
 
 export default function Timer() {
   const [seconds, setSeconds] = useState(20);
+  const { labelToDraw } = useContext(RoundContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -15,7 +17,7 @@ export default function Timer() {
 
   return (
     <div>
-      <p>Please draw a ...</p>
+      <p>Draw a {labelToDraw} </p>
       <p> Hurry up, you have {seconds} seconds left !</p>
     </div>
   );

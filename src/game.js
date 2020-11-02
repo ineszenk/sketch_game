@@ -1,16 +1,21 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useReducer } from "react";
 import { getPrediction } from "./helpers.js";
 import * as tf from "@tensorflow/tfjs";
-import { useRounds, RoundContext } from "./Round";
+import { useRounds } from "./Round";
 import { Link } from "react-router-dom";
+import { pointReducer } from "./reducer";
 
 const model = tf.loadLayersModel("./model/model.json");
 const labels = require("./labels.json");
 let ref = React.createRef();
+const GameContext = React.createContext({});
 
 function Controls({ theCanvas, model, labels }) {
   let [prediction, setPrediction] = useState(""); // Sets default label to empty string.
-  let { nextRound, resetRounds } = useContext(RoundContext);
+
+  let { nextRound, resetRounds, currentRound, points, dispatch } = useContext(
+    GameContext
+  );
 
   useEffect(() => {
     console.log(prediction);
@@ -40,9 +45,12 @@ function Controls({ theCanvas, model, labels }) {
       </button>
       <button
         onClick={() => {
-          getPrediction(theCanvas, model).then(prediction =>
-            setPrediction(labels[prediction[0]])
-          );
+          getPrediction(theCanvas, model).then(prediction => {
+            setPrediction(labels[prediction[0]]);
+            labels[prediction[0]] === labels[currentRound]
+              ? dispatch({ type: "increment" })
+              : console.log("Try Again !");
+          });
           nextRound();
         }}
       >
@@ -110,23 +118,33 @@ const Canvas = React.forwardRef((props, ref) => {
 
 function Game() {
   const [rounds, currentRound, nextRound, resetRounds] = useRounds(labels);
+  const [points, dispatch] = useReducer(pointReducer, 0);
 
   return (
     <div>
       <div class="nes-container is-dark with-title">
         <h1 class="title">Sketch - Round {currentRound + 1} of 10</h1>
         <div className="game">
-          <RoundContext.Provider
-            value={{ rounds, currentRound, nextRound, resetRounds }}
+          <p>Points : {points}</p>
+          <GameContext.Provider
+            value={{
+              points,
+              labels,
+              rounds,
+              currentRound,
+              nextRound,
+              resetRounds,
+              dispatch
+            }}
           >
             <Canvas ref={ref} />
             <Controls theCanvas={ref} model={model} labels={labels} />
             {rounds[currentRound]}
-          </RoundContext.Provider>
+          </GameContext.Provider>
         </div>
       </div>
     </div>
   );
 }
 
-export { Game, Canvas, Controls };
+export { Game, Canvas, Controls, GameContext };
