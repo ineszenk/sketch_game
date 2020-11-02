@@ -3,16 +3,12 @@ import "./App.css";
 import React from "react";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import { Canvas, Controls, Game } from "./game";
-import Home from "./Home";
+import { Game } from "./game";
 
 function App() {
   return (
     <Router>
-      <div class="nes-container is-dark with-title">
-        <h1 class="title">Sketch - Round 10 of 10</h1>
-        <Game />
-      </div>
+      <Game />
     </Router>
   );
 }

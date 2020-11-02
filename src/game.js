@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { getPrediction } from "./helpers.js";
 import * as tf from "@tensorflow/tfjs";
-import { Timer } from "./timer";
+import { useRounds, RoundContext } from "./Round";
+import { Link } from "react-router-dom";
 
 const model = tf.loadLayersModel("./model/model.json");
 const labels = require("./labels.json");
@@ -9,6 +10,7 @@ let ref = React.createRef();
 
 function Controls({ theCanvas, model, labels }) {
   let [prediction, setPrediction] = useState(""); // Sets default label to empty string.
+  let { nextRound, resetRounds } = useContext(RoundContext);
 
   useEffect(() => {
     console.log(prediction);
@@ -16,7 +18,18 @@ function Controls({ theCanvas, model, labels }) {
 
   return (
     <div>
+      <Link to="/">
+        <button
+          onClick={() => {
+            resetRounds();
+          }}
+        >
+          Home{" "}
+        </button>
+      </Link>
       <button
+        type="button"
+        class="nes-btn is-warning"
         onClick={() => {
           const canvas = theCanvas.current;
           const ctx = canvas.getContext("2d");
@@ -26,11 +39,12 @@ function Controls({ theCanvas, model, labels }) {
         Clear the canvas.
       </button>
       <button
-        onClick={() =>
+        onClick={() => {
           getPrediction(theCanvas, model).then(prediction =>
             setPrediction(labels[prediction[0]])
-          )
-        }
+          );
+          nextRound();
+        }}
       >
         Predict the drawing.
       </button>
@@ -95,17 +109,21 @@ const Canvas = React.forwardRef((props, ref) => {
 });
 
 function Game() {
+  const [rounds, currentRound, nextRound, resetRounds] = useRounds(labels);
+
   return (
-    <div className="game">
-      <div>
-        <Canvas ref={ref} />
-        <Controls theCanvas={ref} model={model} labels={labels} />
-      </div>
-      <div>
-        <Timer />
-        <button type="button" class="nes-btn is-warning">
-          Clear canvas
-        </button>
+    <div>
+      <div class="nes-container is-dark with-title">
+        <h1 class="title">Sketch - Round {currentRound + 1} of 10</h1>
+        <div className="game">
+          <RoundContext.Provider
+            value={{ rounds, currentRound, nextRound, resetRounds }}
+          >
+            <Canvas ref={ref} />
+            <Controls theCanvas={ref} model={model} labels={labels} />
+            {rounds[currentRound]}
+          </RoundContext.Provider>
+        </div>
       </div>
     </div>
   );

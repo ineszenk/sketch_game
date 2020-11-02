@@ -1,8 +1,6 @@
-import logo, { ReactComponent } from "./logo.svg";
 import "./App.css";
 import React from "react";
 import "nes.css/css/nes.min.css";
-import { Redirect } from "react-router-dom";
 
 class Home extends React.Component {
   onClick = () => {
