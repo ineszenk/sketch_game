@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getPrediction } from "./helpers.js";
-// import * as tf from "@tensorflow/tfjs";
+import * as tf from "@tensorflow/tfjs";
+import { Timer } from "./timer";
 
-// const model = tf.loadModel("./model/model.json");
+const model = tf.loadLayersModel("./model/model.json");
 const labels = require("./labels.json");
 let ref = React.createRef();
 
@@ -98,10 +99,10 @@ function Game() {
     <div className="game">
       <div>
         <Canvas ref={ref} />
-        <Controls theCanvas={ref} labels={labels} />
+        <Controls theCanvas={ref} model={model} labels={labels} />
       </div>
       <div>
-        <p>TEXT</p>
+        <Timer />
         <button type="button" class="nes-btn is-warning">
           Clear canvas
         </button>
