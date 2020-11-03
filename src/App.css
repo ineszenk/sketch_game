@@ -6,11 +6,10 @@
   height: 40vmin;
   pointer-events: none;
 }
-
-.game{
+ .game{
   display: flex;
   flex-direction: row;
-}
+} 
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

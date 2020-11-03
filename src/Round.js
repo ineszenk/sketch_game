@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Timer from "./timer";
 
 const RoundContext = React.createContext({});
@@ -19,10 +19,15 @@ function useRounds(labels) {
 }
 
 function Round({ labelToDraw }) {
+  // const timer = Timer();
+  // const seconds = timer.seconds;
+  // const SetSeconds = timer.setSeconds;
+
   return (
     <div>
       <RoundContext.Provider value={{ labelToDraw }}>
-        <Timer />
+        <p>Draw a {labelToDraw} </p>
+        {/* <p> Hurry up, you have {seconds} seconds left !</p> */}
       </RoundContext.Provider>
     </div>
   );
