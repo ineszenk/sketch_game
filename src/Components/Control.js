@@ -11,27 +11,29 @@ function Controls({ theCanvas, model, labels }) {
 
   let { next, current, dispatch } = useContext(GameContext);
   const [seconds, setSeconds] = useState(10);
-  const [clickPredict, setclickPredict] = useState(false);
+  const [predict, setPredict] = useState(false);
   // let { seconds, setSeconds } = useContext(TimerContext);
 
   useEffect(() => {
     setTimeout(() => {
+      getPrediction(theCanvas, model).then(prediction => {
+        setPrediction(labels[prediction[0]]);
+        if (labels[prediction[0]] === labels[current]) {
+          dispatch({ type: "increment" });
+          next();
+          setPredict(true);
+        } else {
+          console.log("Try Again !");
+        }
+      });
       if (seconds === 0) {
-        console.log("LABELS", labels);
-        getPrediction(theCanvas, model).then(prediction => {
-          console.log(prediction[0]);
-          setPrediction(labels[prediction[0]]);
-          labels[prediction[0]] === labels[current]
-            ? dispatch({ type: "increment" })
-            : console.log("Try Again !");
-        });
         setSeconds(10);
         next();
       }
-      if (clickPredict && seconds !== 0) {
+      if (predict && seconds !== 0) {
         setSeconds(10);
-        setclickPredict(false);
-      } else if (!clickPredict && seconds !== 0) {
+        setPredict(false);
+      } else if (!predict && seconds !== 0) {
         setSeconds(seconds - 1);
       }
     }, 1000);
@@ -52,7 +54,7 @@ function Controls({ theCanvas, model, labels }) {
         </button>
         <button
           onClick={() => {
-            setclickPredict(true);
+            setPredict(true);
             getPrediction(theCanvas, model).then(prediction => {
               setPrediction(labels[prediction[0]]);
               labels[prediction[0]] === labels[current]
