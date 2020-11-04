@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import "nes.css/css/nes.min.css";
+import TypedReact from "./Components/TypedReact";
 
 class Home extends React.Component {
   onClick = () => {
@@ -10,13 +11,14 @@ class Home extends React.Component {
   render() {
     return (
       <div class="nes-container is-dark with-title is-centered">
-        <h1 class="title">Welcome to the wonderful Sketch Game</h1>
+        <h1 class="title">Welcome to the wonderful Sketch Game" </h1>
         <p>
-          This game has been modeled-off Google's{" "}
-          <a href="Quick, Draw!">Quick, Draw!</a> game, and uses a sampling from
-          the Quick, Draw! <a href="dataset">dataset</a>.
+          <TypedReact
+            strings={[
+              "This game has been modeled-off Google's  <a href='Quick, Draw'>Quick, Draw!</a> game, <p>and uses a sampling from the Quick, Draw! <a href='dataset'>dataset.</a></p>  <p>Brought to you by the EPFL Extension School.</p>"
+            ]}
+          />
         </p>
-        <p>Brought to you by the EPFL Extension School.</p>
 
         <button
           onClick={this.onClick}

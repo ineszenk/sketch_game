@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const RoundContext = React.createContext({});
 
+// Use Round Custom Hook
 function useRounds(labels) {
   let [currentRound, setCurrentRound] = useState(0);
 
