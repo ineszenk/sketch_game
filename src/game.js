@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useContext, useReducer } from "react";
-import { getPrediction } from "./helpers.js";
 import * as tf from "@tensorflow/tfjs";
 import { useRounds } from "./Round";
 import { Controls } from "./Components/Control";
 import { Canvas } from "./Components/Canvas";
-import Timer from "./timer";
 
 import { pointReducer } from "./reducer";
 

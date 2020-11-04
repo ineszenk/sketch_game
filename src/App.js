@@ -3,7 +3,7 @@ import "./App.css";
 import React from "react";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import { Game } from "./game";
+import { Game } from "./Game";
 
 function App() {
   return (

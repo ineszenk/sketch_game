@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { GameContext } from "./game";
+import { GameContext } from "./Game";
 import { Controls } from "./Components/Control";
 import { getPrediction } from "./helpers.js";
 const TimerContext = React.createContext({});

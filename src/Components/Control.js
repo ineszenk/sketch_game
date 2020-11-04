@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getPrediction } from "../helpers.js";
 import { TimerContext } from "../timer";
-import { GameContext } from "../game";
+import { GameContext } from "../Game";
 import { Link } from "react-router-dom";
 
 const ControlContext = React.createContext({});
