@@ -7,7 +7,7 @@ export function useTimer({ setPredict, predict }) {
 
   const timer = setTimeout(() => {
     if (seconds === 0) {
-      setSeconds(10);
+      setSeconds(20);
       next();
     }
     if (predict && seconds !== 0) {

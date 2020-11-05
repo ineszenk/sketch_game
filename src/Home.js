@@ -8,7 +8,7 @@ class Home extends React.Component {
   render() {
     return (
       <div class="nes-container is-dark with-title is-centered">
-        <h1 class="title">Welcome to the wonderful Sketch Game" </h1>
+        <h1 class="title">Welcome to the wonderful Sketch Game</h1>
         <p>
           <TypedReact
             strings={[

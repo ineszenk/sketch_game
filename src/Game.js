@@ -17,7 +17,7 @@ function Game() {
   const [points, dispatch] = useReducer(pointReducer, 0);
   console.log(current);
   return (
-    <div>
+    <div className="GameContainer">
       {current > 9 ? (
         <div class="nes-container is-dark with-title">
           <h1 class="title">Sketch - End of the game</h1>
@@ -74,8 +74,8 @@ function Game() {
               }}
             >
               <Canvas ref={ref} />
-              <Controls theCanvas={ref} model={model} labels={labels} />
               <p> {rounds[current]}</p>
+              <Controls theCanvas={ref} model={model} labels={labels} />
               <p>Points : {points}</p>
             </GameContext.Provider>
           </div>
