@@ -12,7 +12,7 @@ class Home extends React.Component {
         <p>
           <TypedReact
             strings={[
-              "This game has been modeled-off Google's  <a href='Quick, Draw'>Quick, Draw!</a> game, <p>and uses a sampling from the Quick, Draw! <a href='dataset'>dataset.</a></p>  <p>Brought to you by the EPFL Extension School.</p>"
+              "This game has been modeled-off Google's  <a href='https://quickdraw.withgoogle.com/#'>Quick, Draw!</a> game, <p>and uses a sampling from the Quick, Draw! <a href='dataset'>dataset.</a></p>  <p>Brought to you by the EPFL Extension School.</p>"
             ]}
           />
         </p>
