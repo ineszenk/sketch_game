@@ -55,7 +55,7 @@ function Game() {
         <div class="nes-container is-dark with-title">
           <h1 class="title">Sketch - Round {current + 1} of 10</h1>
           <Link to="/Home">
-            <button type="button" class="primary">
+            <button type="button" class="primary" onClick={() => reset()}>
               Home
             </button>
           </Link>
