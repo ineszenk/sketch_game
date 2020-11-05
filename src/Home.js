@@ -2,12 +2,9 @@ import "./App.css";
 import React from "react";
 import "nes.css/css/nes.min.css";
 import TypedReact from "./Components/TypedReact";
+import { Link } from "react-router-dom";
 
 class Home extends React.Component {
-  onClick = () => {
-    this.props.history.push("/Game");
-  };
-
   render() {
     return (
       <div class="nes-container is-dark with-title is-centered">
@@ -19,15 +16,11 @@ class Home extends React.Component {
             ]}
           />
         </p>
-
-        <button
-          onClick={this.onClick}
-          onSubmit={this.onClick}
-          type="button"
-          class="nes-btn is-primary"
-        >
-          Play Game
-        </button>
+        <Link to="/Game">
+          <button type="button" class="nes-btn is-primary">
+            Play Game
+          </button>
+        </Link>
         <h6>
           Made with <i class="nes-icon is-small heart"></i> in Geneva
         </h6>

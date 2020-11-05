@@ -20,7 +20,7 @@ function Game() {
     <div>
       {current > 9 ? (
         <div class="nes-container is-dark with-title">
-          <h1 class="title">Sketch - End of the round</h1>
+          <h1 class="title">Sketch - End of the game</h1>
           <div>
             {points > 5 ? (
               <div>
@@ -29,8 +29,8 @@ function Game() {
                   You have scored {points}
                 </button>
                 <Link to="/Home">
-                  <button type="button" class="nes-btn is-success">
-                    You have scored {points}
+                  <button type="button" class="primary">
+                    Click to try again !
                   </button>
                 </Link>
               </div>
@@ -43,8 +43,8 @@ function Game() {
                   You have scored {points}
                 </button>
                 <Link to="/Home">
-                  <button type="button" class="nes-btn is-success">
-                    You have scored {points}
+                  <button type="button" class="primary">
+                    Click to try again !
                   </button>
                 </Link>
               </div>
@@ -54,6 +54,11 @@ function Game() {
       ) : (
         <div class="nes-container is-dark with-title">
           <h1 class="title">Sketch - Round {current + 1} of 10</h1>
+          <Link to="/Home">
+            <button type="button" class="primary">
+              Home
+            </button>
+          </Link>
           <div>
             <GameContext.Provider
               value={{
