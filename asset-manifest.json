@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/sketch_game/static/css/main.6789d558.chunk.css",
+    "main.js": "/sketch_game/static/js/main.a2c1d1b7.chunk.js",
+    "main.js.map": "/sketch_game/static/js/main.a2c1d1b7.chunk.js.map",
+    "runtime-main.js": "/sketch_game/static/js/runtime-main.500678a3.js",
+    "runtime-main.js.map": "/sketch_game/static/js/runtime-main.500678a3.js.map",
+    "static/css/2.fb514539.chunk.css": "/sketch_game/static/css/2.fb514539.chunk.css",
+    "static/js/2.0d40a7ba.chunk.js": "/sketch_game/static/js/2.0d40a7ba.chunk.js",
+    "static/js/2.0d40a7ba.chunk.js.map": "/sketch_game/static/js/2.0d40a7ba.chunk.js.map",
+    "static/js/3.1ad4e3f2.chunk.js": "/sketch_game/static/js/3.1ad4e3f2.chunk.js",
+    "static/js/3.1ad4e3f2.chunk.js.map": "/sketch_game/static/js/3.1ad4e3f2.chunk.js.map",
+    "index.html": "/sketch_game/index.html",
+    "static/css/2.fb514539.chunk.css.map": "/sketch_game/static/css/2.fb514539.chunk.css.map",
+    "static/css/main.6789d558.chunk.css.map": "/sketch_game/static/css/main.6789d558.chunk.css.map",
+    "static/js/2.0d40a7ba.chunk.js.LICENSE.txt": "/sketch_game/static/js/2.0d40a7ba.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.500678a3.js",
+    "static/css/2.fb514539.chunk.css",
+    "static/js/2.0d40a7ba.chunk.js",
+    "static/css/main.6789d558.chunk.css",
+    "static/js/main.a2c1d1b7.chunk.js"
+  ]
+}
