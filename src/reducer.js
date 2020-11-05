@@ -6,6 +6,8 @@ export function pointReducer(pointsState, action) {
       return initialPoints;
     case "increment":
       return pointsState + 1;
+    case "bonus":
+      return pointsState + 2;
     case "decrement":
       return pointsState - 1;
     default:
