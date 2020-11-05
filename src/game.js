@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useReducer } from "react";
+import React, { useReducer } from "react";
 import * as tf from "@tensorflow/tfjs";
 import { useRounds } from "./Round";
 import { Controls } from "./Components/Control";
@@ -76,7 +76,6 @@ function Game() {
               <Canvas ref={ref} />
               <Controls theCanvas={ref} model={model} labels={labels} />
               <p> {rounds[current]}</p>
-              {/* <Timer theCanvas={ref} model={model} labels={labels} /> */}
               <p>Points : {points}</p>
             </GameContext.Provider>
           </div>

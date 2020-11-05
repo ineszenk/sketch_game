@@ -8,9 +8,9 @@ test("renders the Game component", () => {
   expect(tree).toMatchSnapshot();
 });
 
-// describe("Test the <Canvas /> component", () => {
-//   it("Canvas renders correctly", () => {
-//     const tree = renderer.create(<Canvas />).toJSON();
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+describe("Testing the <Canvas /> component", () => {
+  it("Canvas renders correctly", () => {
+    const tree = renderer.create(<Canvas />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});

@@ -67,7 +67,6 @@ function Controls({ theCanvas, model, labels }) {
 
                   next();
                 } else {
-                  console.log(seconds);
                   alert("Sorry but no...try harder next round !");
                   next();
                 }
