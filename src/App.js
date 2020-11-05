@@ -6,11 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Game } from "./Game";
 
 function App() {
-  return (
-    <Router>
-      <Game />
-    </Router>
-  );
+  return <Game />;
 }
 
 export default App;

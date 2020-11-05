@@ -3,6 +3,7 @@ import * as tf from "@tensorflow/tfjs";
 import { useRounds } from "./Round";
 import { Controls } from "./Components/Control";
 import { Canvas } from "./Components/Canvas";
+import { Link } from "react-router-dom";
 
 import { pointReducer } from "./reducer";
 
@@ -27,6 +28,11 @@ function Game() {
                 <button type="button" class="nes-btn is-success">
                   You have scored {points}
                 </button>
+                <Link to="/Home">
+                  <button type="button" class="nes-btn is-success">
+                    You have scored {points}
+                  </button>
+                </Link>
               </div>
             ) : (
               <div>
@@ -36,6 +42,11 @@ function Game() {
                 <button type="button" class="nes-btn is-error">
                   You have scored {points}
                 </button>
+                <Link to="/Home">
+                  <button type="button" class="nes-btn is-success">
+                    You have scored {points}
+                  </button>
+                </Link>
               </div>
             )}
           </div>
