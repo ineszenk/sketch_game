@@ -10,7 +10,6 @@ function Controls({ theCanvas, model, labels }) {
   let { next, current, dispatch } = useContext(GameContext);
   const [seconds, setSeconds] = useState(10);
   const [predict, setPredict] = useState(false);
-  // let { seconds, setSeconds } = useContext(TimerContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -55,18 +54,21 @@ function Controls({ theCanvas, model, labels }) {
         <button
           onClick={() => {
             if (current + 1 <= 10) {
-              setPredict(true);
               getPrediction(theCanvas, model).then(prediction => {
                 setPrediction(labels[prediction[0]]);
-                labels[prediction[0]] === labels[current]
-                  ? dispatch({ type: "increment" })
-                  : console.log("Try Again !");
+                if (labels[prediction[0]] === labels[current]) {
+                  setPredict(true);
+                  dispatch({ type: "increment" });
+                  next();
+                } else {
+                  console.log(seconds);
+                  alert("Sorry but no...try again");
+                }
               });
-              next();
             }
           }}
         >
-          Predict the drawing.
+          Submit early{" "}
         </button>
         <p> Hurry up, you have {seconds} seconds left ! </p>
       </ControlContext.Provider>
