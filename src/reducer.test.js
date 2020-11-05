@@ -9,6 +9,8 @@ const TestReducer = () => {
   return (
     <div>
       <button id="increment" onClick={() => dispatch({ type: "increment" })} />
+      <button id="bonus" onClick={() => dispatch({ type: "bonus" })} />
+
       <button id="decrement" onClick={() => dispatch({ type: "decrement" })} />
       <button id="reset" onClick={() => dispatch({ type: "reset" })} />
       <p>{points}</p>
@@ -25,6 +27,11 @@ describe("Testing the score counter", () => {
 
   it("increment score + 1", () => {
     wrapper.find({ id: "increment" }).simulate("click");
+    expect(wrapper.find("p").text(1));
+  });
+
+  it("increment score + 2 bonus", () => {
+    wrapper.find({ id: "bonus" }).simulate("click");
     expect(wrapper.find("p").text(1));
   });
 
