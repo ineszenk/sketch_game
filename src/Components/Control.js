@@ -1,44 +1,34 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getPrediction } from "../helpers.js";
 import { GameContext } from "../Game";
+import { useTimer } from "../timer";
 
 const ControlContext = React.createContext({});
 
 function Controls({ theCanvas, model, labels }) {
-  let [prediction, setPrediction] = useState(""); // Sets default label to empty string.
+  let [predict, setPredict] = useState(false);
+  const [timer, seconds] = useTimer({ predict, setPredict });
+
+  let [Prediction, setPrediction] = useState(""); // Sets default label to empty string.
 
   let { next, current, dispatch } = useContext(GameContext);
-  const [seconds, setSeconds] = useState(10);
-  const [predict, setPredict] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (current + 1 < 10) {
-        getPrediction(theCanvas, model).then(prediction => {
-          setPrediction(labels[prediction[0]]);
-          if (labels[prediction[0]] === labels[current]) {
-            seconds <= 5
-              ? dispatch({ type: "increment" })
-              : dispatch({ type: "bonus" });
-
-            next();
-            setPredict(true);
-          } else {
-            console.log("Try Again !");
-          }
-        });
-        if (seconds === 0) {
-          setSeconds(10);
+    if (current + 1 < 10) {
+      clearInterval(timer);
+      getPrediction(theCanvas, model).then(prediction => {
+        setPrediction(labels[prediction[0]]);
+        if (labels[prediction[0]] === labels[current]) {
+          seconds <= 5
+            ? dispatch({ type: "increment" })
+            : dispatch({ type: "bonus" });
           next();
+          setPredict(true);
+        } else {
+          console.log("Try Again !");
         }
-        if (predict && seconds !== 0) {
-          setSeconds(10);
-          setPredict(false);
-        } else if (!predict && seconds !== 0) {
-          setSeconds(seconds - 1);
-        }
-      }
-    }, 1000);
+      });
+    }
   });
   return (
     <div>
@@ -64,7 +54,6 @@ function Controls({ theCanvas, model, labels }) {
                   seconds <= 5
                     ? dispatch({ type: "increment" })
                     : dispatch({ type: "bonus" });
-
                   next();
                 } else {
                   alert("Sorry but no...try harder next round !");
