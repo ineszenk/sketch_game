@@ -77,9 +77,7 @@ function Game() {
               <Controls theCanvas={ref} model={model} labels={labels} />
               <p> {rounds[current]}</p>
               {/* <Timer theCanvas={ref} model={model} labels={labels} /> */}
-              <p>
-                Points : {points} / {current + 1}
-              </p>
+              <p>Points : {points}</p>
             </GameContext.Provider>
           </div>
         </div>
