@@ -6,7 +6,7 @@ import Home from "./Home";
 
 function Root() {
   return (
-    <Router basename={"/project-react-c1-s8-4092-2296/"}>
+    <Router>
       <Switch>
         <Route path="/Home">
           <Home />
