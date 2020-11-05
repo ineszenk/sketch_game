@@ -17,7 +17,10 @@ function Controls({ theCanvas, model, labels }) {
         getPrediction(theCanvas, model).then(prediction => {
           setPrediction(labels[prediction[0]]);
           if (labels[prediction[0]] === labels[current]) {
-            dispatch({ type: "increment" });
+            seconds <= 5
+              ? dispatch({ type: "increment" })
+              : dispatch({ type: "bonus" });
+
             next();
             setPredict(true);
           } else {
@@ -56,16 +59,17 @@ function Controls({ theCanvas, model, labels }) {
             if (current + 1 <= 10) {
               getPrediction(theCanvas, model).then(prediction => {
                 setPrediction(labels[prediction[0]]);
+                setPredict(true);
                 if (labels[prediction[0]] === labels[current]) {
-                  setPredict(true);
-                  seconds < 5
+                  seconds <= 5
                     ? dispatch({ type: "increment" })
                     : dispatch({ type: "bonus" });
 
                   next();
                 } else {
                   console.log(seconds);
-                  alert("Sorry but no...try again");
+                  alert("Sorry but no...try harder next round !");
+                  next();
                 }
               });
             }
