@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { getPrediction } from "../helpers.js";
-import { TimerContext } from "../timer";
 import { GameContext } from "../Game";
-import { Link } from "react-router-dom";
 
 const ControlContext = React.createContext({});
 
@@ -16,25 +14,27 @@ function Controls({ theCanvas, model, labels }) {
 
   useEffect(() => {
     setTimeout(() => {
-      getPrediction(theCanvas, model).then(prediction => {
-        setPrediction(labels[prediction[0]]);
-        if (labels[prediction[0]] === labels[current]) {
-          dispatch({ type: "increment" });
+      if (current + 1 < 10) {
+        getPrediction(theCanvas, model).then(prediction => {
+          setPrediction(labels[prediction[0]]);
+          if (labels[prediction[0]] === labels[current]) {
+            dispatch({ type: "increment" });
+            next();
+            setPredict(true);
+          } else {
+            console.log("Try Again !");
+          }
+        });
+        if (seconds === 0) {
+          setSeconds(10);
           next();
-          setPredict(true);
-        } else {
-          console.log("Try Again !");
         }
-      });
-      if (seconds === 0) {
-        setSeconds(10);
-        next();
-      }
-      if (predict && seconds !== 0) {
-        setSeconds(10);
-        setPredict(false);
-      } else if (!predict && seconds !== 0) {
-        setSeconds(seconds - 1);
+        if (predict && seconds !== 0) {
+          setSeconds(10);
+          setPredict(false);
+        } else if (!predict && seconds !== 0) {
+          setSeconds(seconds - 1);
+        }
       }
     }, 1000);
   });
@@ -54,14 +54,16 @@ function Controls({ theCanvas, model, labels }) {
         </button>
         <button
           onClick={() => {
-            setPredict(true);
-            getPrediction(theCanvas, model).then(prediction => {
-              setPrediction(labels[prediction[0]]);
-              labels[prediction[0]] === labels[current]
-                ? dispatch({ type: "increment" })
-                : console.log("Try Again !");
-            });
-            next();
+            if (current + 1 <= 10) {
+              setPredict(true);
+              getPrediction(theCanvas, model).then(prediction => {
+                setPrediction(labels[prediction[0]]);
+                labels[prediction[0]] === labels[current]
+                  ? dispatch({ type: "increment" })
+                  : console.log("Try Again !");
+              });
+              next();
+            }
           }}
         >
           Predict the drawing.

@@ -13,7 +13,10 @@ function useRounds(labels) {
   return [
     rounds,
     currentRound,
-    () => setCurrentRound((currentRound + 1) % 10),
+    () =>
+      currentRound < 10
+        ? setCurrentRound(currentRound + 1)
+        : setCurrentRound(currentRound),
     () => setCurrentRound(0)
   ];
 }
