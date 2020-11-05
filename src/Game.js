@@ -4,6 +4,7 @@ import { useRounds } from "./Round";
 import { Controls } from "./Components/Control";
 import { Canvas } from "./Components/Canvas";
 import { Link } from "react-router-dom";
+import "./App.css";
 
 import { pointReducer } from "./reducer";
 
@@ -17,7 +18,7 @@ function Game() {
   const [points, dispatch] = useReducer(pointReducer, 0);
   console.log(current);
   return (
-    <div className="GameContainer">
+    <div>
       {current > 9 ? (
         <div class="nes-container is-dark with-title">
           <h1 class="title">Sketch - End of the game</h1>
@@ -59,7 +60,7 @@ function Game() {
               Home
             </button>
           </Link>
-          <div>
+          <div className="GameContainer">
             <GameContext.Provider
               value={{
                 points,
@@ -73,10 +74,25 @@ function Game() {
                 model
               }}
             >
-              <Canvas ref={ref} />
-              <p> {rounds[current]}</p>
-              <Controls theCanvas={ref} model={model} labels={labels} />
-              <p>Points : {points}</p>
+              <div className="canvas">
+                <p> {rounds[current]}</p>
+                <Canvas ref={ref} />
+                <button
+                  type="button"
+                  class="nes-btn is-warning"
+                  onClick={() => {
+                    const canvas = ref.current;
+                    const ctx = canvas.getContext("2d");
+                    ctx.fillRect(0, 0, canvas.height, canvas.width);
+                  }}
+                >
+                  Clear the canvas.
+                </button>
+                <p>Points : {points}</p>
+              </div>
+              <div className="comments">
+                <Controls theCanvas={ref} model={model} labels={labels} />
+              </div>
             </GameContext.Provider>
           </div>
         </div>

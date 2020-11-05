@@ -6,10 +6,42 @@
   height: 40vmin;
   pointer-events: none;
 }
- .game{
+ /* .game{
   display: flex;
   flex-direction: row;
-} 
+}  */
+
+.GameContainer {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-right: 15%;
+  margin-left: 15%;
+
+}
+
+.button_game{
+  display: flex;
+  flex-direction: column;
+  /* width: 30vh; */
+  align-items: center;
+
+}
+
+.comments{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.canvas{
+  display: flex;
+  flex-direction: column;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
