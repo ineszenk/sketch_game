@@ -16,64 +16,64 @@ const GameContext = React.createContext({});
 function Game() {
   const [rounds, current, next, reset] = useRounds(labels);
   const [points, dispatch] = useReducer(pointReducer, 0);
-  console.log(current);
+  console.log("POINTS", points);
   return (
     <div>
-      {current > 9 ? (
-        <div class="nes-container is-dark with-title">
-          <h1 class="title">Sketch - End of the game</h1>
-          <div>
-            {points > 5 ? (
-              <div>
-                <p>You Win, well done !</p>
-                <button type="button" class="nes-btn is-success">
-                  You have scored {points}
-                </button>
-                <Link to="/Home">
-                  <button type="button" class="primary">
-                    Click to try again !
+      <GameContext.Provider
+        value={{
+          points,
+          labels,
+          rounds,
+          current,
+          next,
+          reset,
+          dispatch,
+          ref,
+          model
+        }}
+      >
+        {current > 9 ? (
+          <div class="nes-container is-dark with-title">
+            <h1 class="title">Sketch - End of the game</h1>
+            <div>
+              {points > 5 ? (
+                <div>
+                  <p>You Win, well done !</p>
+                  <button type="button" class="nes-btn is-success">
+                    You have scored {points}
                   </button>
-                </Link>
-              </div>
-            ) : (
-              <div>
-                <h1>You've lost</h1>
+                  <Link to="/Home">
+                    <button type="button" class="primary">
+                      Click to try again !
+                    </button>
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  <h1>You've lost</h1>
 
-                <p>Hmm...pretty sure you can do better!</p>
-                <button type="button" class="nes-btn is-error">
-                  You have scored {points}
-                </button>
-                <Link to="/Home">
-                  <button type="button" class="primary">
-                    Click to try again !
+                  <p>Hmm...pretty sure you can do better!</p>
+                  <button type="button" class="nes-btn is-error">
+                    You have scored {points}
                   </button>
-                </Link>
-              </div>
-            )}
+                  <Link to="/Home">
+                    <button type="button" class="primary">
+                      Click to try again !
+                    </button>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div class="nes-container is-dark with-title">
-          <h1 class="title">Sketch - Round {current + 1} of 10</h1>
-          <Link to="/Home">
-            <button type="button" class="primary" onClick={() => reset()}>
-              Home
-            </button>
-          </Link>
-          <div className="GameContainer">
-            <GameContext.Provider
-              value={{
-                points,
-                labels,
-                rounds,
-                current,
-                next,
-                reset,
-                dispatch,
-                ref,
-                model
-              }}
-            >
+        ) : (
+          <div class="nes-container is-dark with-title">
+            <h1 class="title">Sketch - Round {current + 1} of 10</h1>
+            <Link to="/Home">
+              <button type="button" class="primary" onClick={() => reset()}>
+                Home
+              </button>
+            </Link>
+            <div className="GameContainer">
               <div className="canvas">
                 <p> {rounds[current]}</p>
                 <Canvas ref={ref} />
@@ -93,10 +93,10 @@ function Game() {
               <div className="comments">
                 <Controls theCanvas={ref} model={model} labels={labels} />
               </div>
-            </GameContext.Provider>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </GameContext.Provider>
     </div>
   );
 }

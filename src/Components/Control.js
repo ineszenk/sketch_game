@@ -37,9 +37,7 @@ function Controls({ theCanvas, model, labels }) {
                 getPrediction(theCanvas, model).then(prediction => {
                   setPredict(true);
                   if (labels[prediction[0]] === labels[current]) {
-                    seconds <= 5
-                      ? dispatch({ type: "increment" })
-                      : dispatch({ type: "bonus" });
+                    dispatch({ type: "increment" });
                     next();
                     setPredict(true);
                   } else {
