@@ -16,7 +16,6 @@ const GameContext = React.createContext({});
 function Game() {
   const [rounds, current, next, reset] = useRounds(labels);
   const [points, dispatch] = useReducer(pointReducer, 0);
-  console.log("POINTS", points);
   return (
     <div>
       <GameContext.Provider
@@ -43,7 +42,11 @@ function Game() {
                     You have scored {points}
                   </button>
                   <Link to="/Home">
-                    <button type="button" class="primary">
+                    <button
+                      type="button"
+                      class="primary"
+                      onClick={() => dispatch({ type: "reset" })}
+                    >
                       Click to try again !
                     </button>
                   </Link>
@@ -57,7 +60,11 @@ function Game() {
                     You have scored {points}
                   </button>
                   <Link to="/Home">
-                    <button type="button" class="primary">
+                    <button
+                      type="button"
+                      class="primary"
+                      onClick={() => dispatch({ type: "reset" })}
+                    >
                       Click to try again !
                     </button>
                   </Link>

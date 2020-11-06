@@ -9,20 +9,21 @@ function Controls({ theCanvas, model, labels }) {
   let [predict, setPredict] = useState(false);
   const [timer, seconds] = useTimer({ predict, setPredict });
 
-  let { next, current, dispatch } = useContext(GameContext);
+  let { next, current, dispatch, points } = useContext(GameContext);
+
+  console.log("points", points);
 
   useEffect(() => {
     if (current + 1 < 10) {
       clearInterval(timer);
-    }
-
-    if (seconds === 0) {
-      getPrediction(theCanvas, model).then(prediction => {
-        console.log(prediction[0]);
-        labels[prediction[0]] === labels[current]
-          ? dispatch({ type: "increment" })
-          : console.log("Try Again !");
-      });
+      if (seconds === 0) {
+        getPrediction(theCanvas, model).then(prediction => {
+          console.log(prediction[0]);
+          labels[prediction[0]] === labels[current]
+            ? dispatch({ type: "increment" })
+            : console.log("Try Again !");
+        });
+      }
     }
   });
   return (
@@ -35,7 +36,7 @@ function Controls({ theCanvas, model, labels }) {
             onClick={() => {
               if (current + 1 <= 10) {
                 getPrediction(theCanvas, model).then(prediction => {
-                  setPredict(true);
+                  // setPredict(true);
                   if (labels[prediction[0]] === labels[current]) {
                     dispatch({ type: "increment" });
                     next();
