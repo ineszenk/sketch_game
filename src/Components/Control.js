@@ -44,6 +44,7 @@ function Controls({ theCanvas, model, labels }) {
                   } else {
                     alert("Sorry but no...try harder next round !");
                     next();
+                    setPredict(true);
                   }
                 });
               }
